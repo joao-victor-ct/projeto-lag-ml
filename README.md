@@ -309,6 +309,10 @@ O dataset será salvo automaticamente em:
 ```text
 dados/dataset_lag.csv
 ```
+Verificação
+```
+cat dados/dataset_lag.csv
+```
 
 Formato esperado:
 
