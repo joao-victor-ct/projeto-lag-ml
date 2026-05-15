@@ -50,21 +50,7 @@ O modelo classifica a rede em três categorias:
 
 # 🏗️ Arquitetura do Projeto
 
-```text
-Cliente (h1)
-      ↓
-Rede Emulada (Mininet + tc/netem)
-      ↓
-Servidor (h2)
-      ↓
-Coleta de Métricas
-      ↓
-Dataset CSV
-      ↓
-Treinamento da IA
-      ↓
-Predição de Lag
-```
+<img width="1536" height="1024" alt="ChatGPT Image 15 de mai  de 2026, 10_44_43" src="https://github.com/user-attachments/assets/d79538e8-9dc7-4c0a-a310-7df8eeeedd9b" />
 
 ---
 
