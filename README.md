@@ -406,7 +406,10 @@ O gráfico será salvo em:
 ```text
 resultados/grafico.png
 ```
-
+Para abrir o gráfico:
+```
+xdg-open resultados/grafico.png
+```
 ---
 
 # 📋 Métricas Utilizadas
