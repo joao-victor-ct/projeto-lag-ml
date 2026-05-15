@@ -85,8 +85,6 @@ projeto-lag-ml/
 │   ├── predizer_lag.py
 │   ├── topologia.py
 │   └── treinar_modelo.py
-├── .gitignore
-├── LICENSE
 ├── README.md
 └── venv/
 ```
@@ -530,7 +528,8 @@ Utilize a topologia configurada sem controlador.
 
 # 👨‍💻 Autores
 
-## João Victor Coelho Trigueiro | Anderson Gabriel
+## João Victor Coelho Trigueiro
+## Anderson Gabriel Souza do Nascimento
 
 Instituto Federal da Paraíba (IFPB)
 
