@@ -394,6 +394,39 @@ Esse é um dos testes mais importantes para demonstrar reprodutibilidade cientí
 
 O melhor modelo foi o **Random Forest**, apresentando maior acurácia e maior F1-score.
 
+## Análise da importância das variáveis
+
+Após o treinamento do modelo Random Forest, foi realizada uma análise de importância das variáveis para identificar quais métricas de rede tiveram maior influência na classificação dos estados de QoS.
+
+### Resultados obtidos
+
+| Variável    | Importância |
+| ----------- | ----------: |
+| Congestion  |      26,78% |
+| Jitter      |      23,21% |
+| Packet Loss |      21,35% |
+| Throughput  |      17,11% |
+| Latency     |      11,54% |
+
+### Interpretação dos resultados
+
+O congestionamento foi a variável mais relevante para o modelo, representando aproximadamente 26,78% da importância total. Esse resultado indica que a saturação da rede exerce forte influência sobre a qualidade do serviço, impactando diretamente a experiência dos usuários.
+
+O jitter apareceu como a segunda variável mais importante (23,21%). Isso demonstra que a variação do atraso entre pacotes possui grande impacto em aplicações sensíveis a tempo real, como jogos online, chamadas VoIP e videoconferências.
+
+A perda de pacotes (Packet Loss) apresentou importância de 21,35%, evidenciando que falhas na entrega dos pacotes também são determinantes para a degradação da qualidade da conexão.
+
+O throughput apresentou importância intermediária (17,11%), contribuindo para a classificação dos estados da rede, porém com menor influência do que congestionamento, jitter e perda de pacotes.
+
+A latência apresentou a menor importância relativa (11,54%). Embora seja uma métrica tradicionalmente associada à qualidade da conexão, os resultados sugerem que parte de sua influência já está representada por métricas correlacionadas, como congestionamento, jitter e perda de pacotes.
+
+### Conclusão da análise
+
+Os resultados demonstram que a utilização conjunta de múltiplas métricas de rede fornece uma representação mais completa do comportamento da QoS. O modelo identificou que congestionamento, jitter e perda de pacotes são os principais fatores para distinguir entre estados normais, moderados e severos de degradação da rede.
+
+A análise de importância das variáveis também contribui para a interpretabilidade do modelo, permitindo compreender quais métricas possuem maior impacto na tomada de decisão do algoritmo.
+
+
 ## Discussão dos resultados
 
 Os resultados demonstram que algoritmos de Machine Learning conseguem classificar estados de degradação de QoS com boa precisão.
