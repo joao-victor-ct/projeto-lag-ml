@@ -404,28 +404,6 @@ A Decision Tree apresentou desempenho próximo ao Random Forest, porém com meno
 
 O tempo de inferência de todos os modelos foi muito baixo, indicando viabilidade para aplicações em tempo quase real.
 
-## Como apresentar ao professor
-
-Sequência recomendada:
-
-```bash
-python3 scripts/preparar_dataset.py
-python3 scripts/gerar_graficos_dataset.py
-python3 scripts/treinar_modelos.py
-python3 scripts/predizer_lag.py 1.2 40 10 80 2
-python3 scripts/predizer_lag.py 3.0 90 40 180 8
-python3 scripts/executar_experimentos.py
-```
-
-Depois abrir os principais gráficos:
-
-```bash
-xdg-open resultados/comparacao_modelos_f1.png
-xdg-open resultados/matriz_confusao_melhor_modelo.png
-xdg-open resultados/importancia_variaveis.png
-xdg-open resultados/distribuicao_classes.png
-```
-
 ## Conclusão
 
 O projeto demonstrou que é possível utilizar métricas de rede e algoritmos de Machine Learning para prever estados de degradação de QoS em redes de computadores.
