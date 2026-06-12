@@ -370,19 +370,6 @@ Esse teste demonstra a comparação quantitativa entre os algoritmos.
 
 ---
 
-### Teste 12 — Teste de reprodutibilidade
-
-Para verificar se qualquer pessoa consegue reproduzir os experimentos:
-
-```bash
-rm -rf modelos/*.pkl resultados/*.png resultados/*.csv
-python3 scripts/executar_experimentos.py
-```
-
-Ao final, os modelos, gráficos e métricas devem ser gerados novamente.
-
-Esse é um dos testes mais importantes para demonstrar reprodutibilidade científica.
-
 ## Resultados obtidos
 
 | Modelo              | Acurácia | Precisão Macro | Recall Macro | F1-Score Macro | Tempo de Inferência |
