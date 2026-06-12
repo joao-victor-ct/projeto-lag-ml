@@ -1,533 +1,444 @@
-# 🎮 Predição de Eventos de Alta Latência (Lag) em Jogos Online utilizando Machine Learning
+# Predição de Eventos de Alta Latência em Jogos Online utilizando Machine Learning
 
-## 📌 Sobre o Projeto
+Projeto desenvolvido para a disciplina de **Avaliação de Desempenho em Redes de Computadores** do IFPB.
 
-Este projeto propõe uma solução baseada em Machine Learning para prever eventos de alta latência (lag) em jogos online utilizando métricas de rede coletadas em tempo quase real.
+O objetivo do projeto é classificar o estado de uma rede em três categorias — **normal**, **moderado** ou **severo** — utilizando métricas de desempenho de rede e algoritmos de Machine Learning.
 
-A aplicação utiliza um ambiente emulado com Mininet para simular diferentes condições de rede, incluindo:
+## Autores
 
-* baixa latência;
-* jitter;
-* perda de pacotes;
-* congestionamento;
-* cenários severos de degradação.
+* João Victor Coelho Trigueiro
+* Anderson Gabriel Souza do Nascimento
 
-Os dados coletados são utilizados para treinar um modelo de classificação capaz de identificar automaticamente o estado da rede.
+## Objetivo
 
----
+Desenvolver uma solução capaz de prever eventos de degradação de Qualidade de Serviço (QoS), como lag em jogos online, a partir de métricas de rede.
 
-# 🚀 Funcionalidades
+As métricas utilizadas são:
 
-✅ Emulação de rede com Mininet
+* Throughput
+* Congestionamento
+* Jitter
+* Latência
+* Perda de pacotes
 
-✅ Simulação de lag com tc/netem
+## Tecnologias utilizadas
 
-✅ Coleta automática de métricas de rede
+* Python 3
+* Pandas
+* Scikit-learn
+* Matplotlib
+* Joblib
+* Git/GitHub
 
-✅ Geração automática de dataset CSV
-
-✅ Treinamento de modelo de Machine Learning
-
-✅ Predição automática de cenários de rede
-
-✅ Geração de gráficos para análise
-
-✅ Estrutura pronta para expansão futura
-
----
-
-# 🧠 Classificações da Rede
-
-O modelo classifica a rede em três categorias:
-
-| Classe   | Descrição                        |
-| -------- | -------------------------------- |
-| normal   | Rede estável e jogável           |
-| moderado | Pequeno impacto na jogabilidade  |
-| severo   | Lag severo e perda de desempenho |
-
----
-
-# 🏗️ Arquitetura do Projeto
-
-<img width="1536" height="1024" alt="ChatGPT Image 15 de mai  de 2026, 10_44_43" src="https://github.com/user-attachments/assets/d79538e8-9dc7-4c0a-a310-7df8eeeedd9b" />
-
----
-
-# 📁 Estrutura do Projeto
+## Estrutura do projeto
 
 ```text
 projeto-lag-ml/
 ├── dados/
-│   └── dataset_lag.csv
-├── imagens/
+│   ├── dataset_lag.csv
+│   ├── dataset_lag_publico.csv
+│   ├── network_dataset.csv
+│   └── network_dataset_labeled.csv
 ├── modelos/
-│   └── modelo_lag.pkl
+│   ├── decision_tree.pkl
+│   ├── knn.pkl
+│   ├── logistic_regression.pkl
+│   ├── melhor_modelo_lag.pkl
+│   ├── modelo_lag.pkl
+│   └── random_forest.pkl
 ├── resultados/
-│   └── grafico.png
+│   ├── boxplot_congestion.png
+│   ├── boxplot_jitter.png
+│   ├── boxplot_latency.png
+│   ├── boxplot_packet_loss.png
+│   ├── boxplot_throughput.png
+│   ├── comparacao_modelos_f1.png
+│   ├── distribuicao_classes.png
+│   ├── importancia_variaveis.csv
+│   ├── importancia_variaveis.png
+│   ├── matriz_confusao_melhor_modelo.png
+│   └── metricas_modelos.csv
 ├── scripts/
 │   ├── coletar_ping.py
+│   ├── executar_experimentos.py
+│   ├── gerar_graficos_dataset.py
 │   ├── grafico.py
 │   ├── predizer_lag.py
+│   ├── preparar_dataset.py
 │   ├── topologia.py
-│   └── treinar_modelo.py
-├── README.md
-└── venv/
+│   ├── treinar_modelo.py
+│   └── treinar_modelos.py
+└── README.md
 ```
 
----
+## Instalação
 
-# 🛠️ Tecnologias Utilizadas
-
-| Tecnologia   | Finalidade                     |
-| ------------ | ------------------------------ |
-| Python       | Linguagem principal            |
-| Mininet      | Emulação de rede               |
-| tc/netem     | Simulação de condições de rede |
-| Scikit-learn | Machine Learning               |
-| Pandas       | Manipulação de dados           |
-| Matplotlib   | Geração de gráficos            |
-| Git/GitHub   | Versionamento                  |
-
----
-
-# 💻 Requisitos
-
-## Sistema operacional
-
-Recomendado:
-
-* Ubuntu 22.04+
-* Debian 12+
-
----
-
-# ⚙️ Instalação Completa
-
-## 1. Clonar o repositório
+Clone o repositório:
 
 ```bash
-git clone https://github.com/SEU_USUARIO/projeto-lag-ml.git
-```
-
-Entre na pasta:
-
-```bash
+git clone https://github.com/joao-victor-ct/projeto-lag-ml.git
 cd projeto-lag-ml
 ```
 
----
-
-## 2. Instalar dependências do sistema
-
-```bash
-sudo apt update
-```
-
-```bash
-sudo apt install mininet python3 python3-pip python3-venv python3-full git -y
-```
-
----
-
-## 3. Criar ambiente virtual Python
+Crie e ative um ambiente virtual:
 
 ```bash
 python3 -m venv venv
-```
-
----
-
-## 4. Ativar ambiente virtual
-
-```bash
 source venv/bin/activate
 ```
 
-O terminal ficará semelhante a:
+Instale as dependências:
+
+```bash
+pip install pandas scikit-learn matplotlib joblib numpy
+```
+
+## Execução completa do projeto
+
+Para executar todo o fluxo experimental automaticamente:
+
+```bash
+python3 scripts/executar_experimentos.py
+```
+
+Esse script executa:
+
+1. Preparação do dataset;
+2. Geração dos gráficos;
+3. Treinamento dos modelos;
+4. Comparação dos algoritmos;
+5. Salvamento dos resultados.
+
+## Testes disponíveis
+
+### Teste 1 — Preparar o dataset
+
+Executa o tratamento do dataset público e cria o arquivo `dataset_lag_publico.csv`.
+
+```bash
+python3 scripts/preparar_dataset.py
+```
+
+Saída esperada:
 
 ```text
-(venv) usuario@linux:~/projeto-lag-ml$
+Dataset preparado em: dados/dataset_lag_publico.csv
+Distribuição das classes:
+normal      747
+moderado    171
+severo       83
 ```
+
+Esse teste verifica se o dataset foi carregado, tratado e rotulado corretamente.
 
 ---
 
-## 5. Instalar bibliotecas Python
+### Teste 2 — Gerar gráficos do dataset
 
 ```bash
-pip install pandas scikit-learn matplotlib joblib
+python3 scripts/gerar_graficos_dataset.py
 ```
 
----
+Esse teste gera os gráficos de análise exploratória.
 
-# ▶️ Como Executar o Projeto
-
-# ETAPA 1 — Limpar sessões antigas do Mininet
-
-```bash
-sudo mn -c
-```
-
----
-
-# ETAPA 2 — Iniciar a topologia
-
-```bash
-sudo python3 scripts/topologia.py
-```
-
-Resultado esperado:
+Arquivos esperados na pasta `resultados/`:
 
 ```text
-mininet>
+distribuicao_classes.png
+boxplot_congestion.png
+boxplot_jitter.png
+boxplot_latency.png
+boxplot_packet_loss.png
+boxplot_throughput.png
+```
+
+Para abrir os gráficos:
+
+```bash
+xdg-open resultados/distribuicao_classes.png
+xdg-open resultados/boxplot_latency.png
+xdg-open resultados/boxplot_jitter.png
+xdg-open resultados/boxplot_packet_loss.png
+xdg-open resultados/boxplot_throughput.png
 ```
 
 ---
 
-# 🌐 Testando a Topologia
-
-Dentro do Mininet:
+### Teste 3 — Treinar e comparar modelos
 
 ```bash
-pingall
+python3 scripts/treinar_modelos.py
 ```
 
-Resultado esperado:
+Esse teste treina e compara os seguintes algoritmos:
+
+* Random Forest
+* Decision Tree
+* KNN
+* Logistic Regression
+
+Saída esperada aproximada:
 
 ```text
-*** Results: 0% dropped
+Resultados dos modelos:
+Random Forest        0.9601
+Decision Tree        0.9534
+KNN                  0.8970
+Logistic Regression  0.7906
+
+Melhor modelo: Random Forest
 ```
 
----
+Esse teste verifica:
 
-# 📡 Simulação de Cenários de Rede
+* Acurácia;
+* Precisão macro;
+* Recall macro;
+* F1-score macro;
+* Tempo de inferência;
+* Melhor modelo encontrado.
 
-# 🟢 Cenário NORMAL
-
-```bash
-h1 tc qdisc add dev h1-eth0 root netem delay 20ms loss 0%
-```
-
----
-
-# 🟡 Cenário MODERADO
-
-Remover configuração anterior:
-
-```bash
-h1 tc qdisc del dev h1-eth0 root
-```
-
-Aplicar cenário:
-
-```bash
-h1 tc qdisc add dev h1-eth0 root netem delay 80ms 20ms loss 2%
-```
-
----
-
-# 🔴 Cenário SEVERO
-
-Remover configuração anterior:
-
-```bash
-h1 tc qdisc del dev h1-eth0 root
-```
-
-Aplicar cenário:
-
-```bash
-h1 tc qdisc add dev h1-eth0 root netem delay 180ms 50ms loss 8%
-```
-
----
-
-# 📊 Coleta de Métricas
-
-Entre no host virtual h1:
-
-```bash
-h1 /bin/bash
-```
-
-Vá até a pasta do projeto:
-
-```bash
-cd /home/SEU_USUARIO/projeto-lag-ml
-```
-
-Ative o ambiente virtual:
-
-```bash
-source venv/bin/activate
-```
-
----
-
-# 🟢 Coleta NORMAL
-
-```bash
-python3 scripts/coletar_ping.py normal
-```
-
----
-
-# 🟡 Coleta MODERADA
-
-```bash
-python3 scripts/coletar_ping.py moderado
-```
-
----
-
-# 🔴 Coleta SEVERA
-
-```bash
-python3 scripts/coletar_ping.py severo
-```
-
----
-
-# 🗂️ Dataset Gerado
-
-O dataset será salvo automaticamente em:
+Arquivos gerados:
 
 ```text
-dados/dataset_lag.csv
-```
-Verificação
-```
-cat dados/dataset_lag.csv
-```
-
-Formato esperado:
-
-```csv
-data,latencia_media,jitter,perda_pacotes,rotulo
-2026...,20.5,1.8,0,normal
-2026...,82.4,19.5,2,moderado
-2026...,190.1,60.2,8,severo
+resultados/metricas_modelos.csv
+resultados/comparacao_modelos_f1.png
+resultados/matriz_confusao_melhor_modelo.png
+resultados/importancia_variaveis.csv
+resultados/importancia_variaveis.png
+modelos/melhor_modelo_lag.pkl
 ```
 
 ---
 
-# 🤖 Treinamento do Modelo
-
-Saia do Mininet:
+### Teste 4 — Abrir comparação dos modelos
 
 ```bash
-exit
+xdg-open resultados/comparacao_modelos_f1.png
 ```
 
-Execute:
+Esse gráfico mostra a comparação dos modelos usando F1-score.
+
+O melhor modelo encontrado foi o **Random Forest**, com desempenho superior aos demais.
+
+---
+
+### Teste 5 — Abrir matriz de confusão
 
 ```bash
-python3 scripts/treinar_modelo.py
+xdg-open resultados/matriz_confusao_melhor_modelo.png
 ```
 
-Resultado esperado:
+A matriz de confusão mostra os acertos e erros do melhor modelo nas classes:
+
+* normal
+* moderado
+* severo
+
+Esse teste ajuda a verificar se o modelo consegue diferenciar corretamente os níveis de degradação da rede.
+
+---
+
+### Teste 6 — Abrir importância das variáveis
+
+```bash
+xdg-open resultados/importancia_variaveis.png
+```
+
+Também é possível visualizar os valores em CSV:
+
+```bash
+cat resultados/importancia_variaveis.csv
+```
+
+Resultado obtido:
 
 ```text
-Acurácia: 1.0
+congestion    0.2678
+jitter        0.2321
+packet_loss   0.2135
+throughput    0.1711
+latency       0.1154
 ```
 
-O modelo será salvo em:
+Interpretação:
+
+* O congestionamento foi a variável mais importante;
+* Jitter e perda de pacotes também tiveram forte impacto;
+* Throughput teve influência intermediária;
+* Latência apresentou menor importância relativa no modelo.
+
+---
+
+### Teste 7 — Predição manual de cenário normal
+
+```bash
+python3 scripts/predizer_lag.py 0.1 5 0.1 5 0
+```
+
+Formato dos parâmetros:
 
 ```text
-modelos/modelo_lag.pkl
+throughput congestion jitter latency packet_loss
 ```
+
+Esse teste simula uma rede com baixa latência, baixo jitter, baixa perda e pouco congestionamento.
 
 ---
 
-# 🔮 Predição de Lag
-
-# Exemplo NORMAL
+### Teste 8 — Predição manual de cenário moderado
 
 ```bash
-python3 scripts/predizer_lag.py 20 2 0
+python3 scripts/predizer_lag.py 1.2 40 10 80 2
 ```
 
-Resultado esperado:
+Saída esperada aproximada:
 
 ```text
-Classificação: normal
+Classificação prevista: moderado
+Probabilidades:
+moderado: 57.50%
+normal: 6.00%
+severo: 36.50%
 ```
+
+Esse teste simula uma rede com degradação intermediária.
 
 ---
 
-# Exemplo MODERADO
+### Teste 9 — Predição manual de cenário severo
 
 ```bash
-python3 scripts/predizer_lag.py 80 20 2
+python3 scripts/predizer_lag.py 3.0 90 40 180 8
 ```
 
-Resultado esperado:
+Saída esperada aproximada:
 
 ```text
-Classificação: moderado
+Classificação prevista: severo
+Probabilidades:
+severo: 76.50%
+moderado: 21.00%
+normal: 2.50%
 ```
+
+Esse teste simula uma rede com alta latência, alto jitter, alta perda de pacotes e congestionamento elevado.
 
 ---
 
-# Exemplo SEVERO
+### Teste 10 — Verificar os arquivos de saída
 
 ```bash
-python3 scipts/predizer_lag.py 180 50 8
+ls dados
+ls modelos
+ls resultados
+ls scripts
 ```
 
-Resultado esperado:
+Esse teste verifica se todos os arquivos necessários foram criados corretamente.
+
+Arquivos principais esperados:
 
 ```text
-Classificação: severo
+dados/dataset_lag_publico.csv
+modelos/melhor_modelo_lag.pkl
+resultados/metricas_modelos.csv
+resultados/comparacao_modelos_f1.png
+resultados/matriz_confusao_melhor_modelo.png
+resultados/importancia_variaveis.png
 ```
 
 ---
 
-# 📈 Geração de Gráficos
-
-Execute:
+### Teste 11 — Verificar métricas dos modelos
 
 ```bash
-python3 scripts/grafico.py
+cat resultados/metricas_modelos.csv
 ```
 
-O gráfico será salvo em:
+Resultado obtido:
 
 ```text
-resultados/grafico.png
+modelo,acuracia,precisao_macro,recall_macro,f1_macro,tempo_inferencia_ms
+Random Forest,0.9601,0.9198,0.8858,0.9006,0.0753
+Decision Tree,0.9534,0.8976,0.8659,0.8797,0.0043
+KNN,0.8970,0.8184,0.7276,0.7651,0.0243
+Logistic Regression,0.7906,0.6439,0.7057,0.6672,0.0105
 ```
-Para abrir o gráfico:
-```
-xdg-open resultados/grafico.png
-```
----
 
-# 📋 Métricas Utilizadas
-
-## Métricas de Rede
-
-* Latência
-* Jitter
-* Perda de pacotes
-
-## Métricas de Machine Learning
-
-* Acurácia
-* Precisão
-* Recall
-* F1-score
+Esse teste demonstra a comparação quantitativa entre os algoritmos.
 
 ---
 
-# 🧪 Fluxo Completo de Teste
+### Teste 12 — Teste de reprodutibilidade
 
-## 1. Subir topologia
+Para verificar se qualquer pessoa consegue reproduzir os experimentos:
 
 ```bash
-sudo python3 scripts/topologia.py
+rm -rf modelos/*.pkl resultados/*.png resultados/*.csv
+python3 scripts/executar_experimentos.py
 ```
 
----
+Ao final, os modelos, gráficos e métricas devem ser gerados novamente.
 
-## 2. Aplicar cenário
+Esse é um dos testes mais importantes para demonstrar reprodutibilidade científica.
+
+## Resultados obtidos
+
+| Modelo              | Acurácia | Precisão Macro | Recall Macro | F1-Score Macro | Tempo de Inferência |
+| ------------------- | -------: | -------------: | -----------: | -------------: | ------------------: |
+| Random Forest       |   96,01% |         91,98% |       88,58% |         90,06% |            0,075 ms |
+| Decision Tree       |   95,35% |         89,77% |       86,60% |         87,97% |            0,004 ms |
+| KNN                 |   89,70% |         81,84% |       72,77% |         76,51% |            0,024 ms |
+| Logistic Regression |   79,07% |         64,40% |       70,57% |         66,73% |            0,010 ms |
+
+O melhor modelo foi o **Random Forest**, apresentando maior acurácia e maior F1-score.
+
+## Discussão dos resultados
+
+Os resultados demonstram que algoritmos de Machine Learning conseguem classificar estados de degradação de QoS com boa precisão.
+
+O modelo Random Forest obteve o melhor desempenho geral, alcançando acurácia de aproximadamente **96%** e F1-score macro de aproximadamente **90%**. Isso indica que o modelo conseguiu identificar padrões entre métricas de rede e estados de qualidade da conexão.
+
+A Decision Tree apresentou desempenho próximo ao Random Forest, porém com menor robustez. O KNN apresentou desempenho intermediário, enquanto a Logistic Regression obteve o pior resultado, indicando que o problema não possui separação linear simples.
+
+O tempo de inferência de todos os modelos foi muito baixo, indicando viabilidade para aplicações em tempo quase real.
+
+## Como apresentar ao professor
+
+Sequência recomendada:
 
 ```bash
-h1 tc qdisc add dev h1-eth0 root netem delay 180ms 50ms loss 8%
+python3 scripts/preparar_dataset.py
+python3 scripts/gerar_graficos_dataset.py
+python3 scripts/treinar_modelos.py
+python3 scripts/predizer_lag.py 1.2 40 10 80 2
+python3 scripts/predizer_lag.py 3.0 90 40 180 8
+python3 scripts/executar_experimentos.py
 ```
 
----
-
-## 3. Entrar no host virtual
+Depois abrir os principais gráficos:
 
 ```bash
-h1 /bin/bash
+xdg-open resultados/comparacao_modelos_f1.png
+xdg-open resultados/matriz_confusao_melhor_modelo.png
+xdg-open resultados/importancia_variaveis.png
+xdg-open resultados/distribuicao_classes.png
 ```
 
----
+## Conclusão
 
-## 4. Coletar métricas
+O projeto demonstrou que é possível utilizar métricas de rede e algoritmos de Machine Learning para prever estados de degradação de QoS em redes de computadores.
 
-```bash
-python3 scripts/coletar_ping.py severo
-```
+A solução implementada permite:
 
----
+* Preparar e rotular dados de rede;
+* Gerar gráficos de análise;
+* Treinar diferentes modelos;
+* Comparar desempenho dos algoritmos;
+* Salvar o melhor modelo;
+* Realizar predições manuais;
+* Avaliar a importância das variáveis;
+* Reproduzir todos os experimentos automaticamente.
 
-## 5. Treinar IA
-
-```bash
-python3 scripts/treinar_modelo.py
-```
-
----
-
-## 6. Realizar predição
-
-```bash
-python3 scripts/predizer_lag.py 180 50 8
-```
-
----
-
-# 🐞 Problemas Comuns
-
-# Permissão negada no dataset
-
-Corrigir:
-
-```bash
-sudo chown $USER:$USER dados/dataset_lag.csv
-```
-
----
-
-# Mininet travado
-
-Limpar sessões:
-
-```bash
-sudo mn -c
-```
-
----
-
-# Bibliotecas não encontradas
-
-Ative o ambiente virtual:
-
-```bash
-source venv/bin/activate
-```
-
----
-
-# Erro com controlador OpenFlow
-
-Utilize a topologia configurada sem controlador.
-
----
-
-# 🚀 Melhorias Futuras
-
-* Integração com iPerf3;
-* Inferência em tempo real;
-* Dashboard Grafana;
-* Redes neurais profundas;
-* Dockerização do projeto;
-* API Flask/FastAPI;
-* Monitoramento contínuo.
-
----
-
-# 👨‍💻 Autores
-
-## João Victor Coelho Trigueiro
-## Anderson Gabriel Souza do Nascimento
-
-Instituto Federal da Paraíba (IFPB)
-
-Curso: Redes de Computadores
-
----
-
-#
+O Random Forest apresentou o melhor desempenho, demonstrando ser uma alternativa viável para classificação de eventos de alta latência e degradação de qualidade em redes.
